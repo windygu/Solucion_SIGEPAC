@@ -7,30 +7,27 @@ using EN;
 using DAL;
 namespace BL
 {
-    class BLMarca : Gestion
+    public class BLMarca : Gestion
     {
-        Marca c = null;
-        ENMarca c2 = new ENMarca();
+        Marca m = new Marca();
+        ENMarca m2 = new ENMarca();
         public override string registrar(ENCliente c = null, ENMarca marca = null)
         {
-            context.(c.primerNombre, c.segundoNombre, c.primerApellido,
-                c.segundoApellido, c.dui, c.direccion, c.telefono, c.correo, salida);
+            context.registrarMarcas(marca.Nombre, marca.Comentario, salida);
             context.SaveChanges();
             return salida.Value.ToString();
         }
 
-        public override string actualizar(int? id, ENCliente c)
+        public override string actualizar(int? id, ENCliente c = null, ENMarca marca = null)
         {
-            context.modificarClientes(id, c.primerNombre, c.segundoNombre, c.primerApellido,
-                c.segundoApellido, c.dui, c.direccion, c.telefono,
-                c.correo, salida);
+            context.modificarMarcas(id, marca.Nombre, marca.Comentario, salida);
             context.SaveChanges();
             return salida.Value.ToString();
         }
 
         public override string eliminar(int id)
         {
-            context.eliminarClientes(id, salida);
+            context.eliminarMarcas(id, salida);
             context.SaveChanges();
             return salida.Value.ToString();
         }
@@ -39,59 +36,22 @@ namespace BL
         {
             if (nombre != null)
             {
-                return context.listadoClientes(null, nombre, null, null).ToList<object>();
+                return context.listadoMarcas(null, nombre).ToList<object>();
 
-            }
-            else if (apellido != null)
-            {
-
-                return context.listadoClientes(null, null, apellido, null).ToList<object>();
             }
             else if (id != null)
             {
-
-                return context.listadoClientes(id, null, null, null).ToList<object>(); ;
+                return context.listadoMarcas(id, null).ToList<object>(); ;
             }
-            else if (dui != null)
-            {
-                return context.listadoClientes(null, null, null, dui).ToList<object>();
-            }
-            else return context.listadoClientes(null, null, null, null).ToList<object>();
-
+            else return context.listadoMarcas(null, null).ToList<object>();
         }
 
         public override object buscar(int? id)
         {
-
-            c = context.Cliente.Find(id);
-            ENCliente c2 = new ENCliente();
-            c2.primerNombre = c.PrimerNombre;
-            c2.segundoNombre = c.SegundoNombre;
-            c2.primerApellido = c.PrimerApellido;
-            c2.segundoApellido = c.SegundoApellido;
-            c2.dui = c.Dui;
-            c2.direccion = c.Direccion;
-            c2.telefono = c.Telefono;
-            c2.correo = c.Correo;
-            return c2;
-        }
-
-        public List<object> listaConPedido()
-        {
-            return (from c in context.Cliente
-                    join p in context.Pedido on c.Id equals p.IdCliente
-                    select new
-                    {
-                        Id = c.Id,
-                        PrimerNombre = c.PrimerNombre,
-                        SegundoNombre = c.SegundoNombre,
-                        PrimerApellido = c.PrimerApellido,
-                        SegundoApellido = c.SegundoApellido,
-                        Dui = c.Dui,
-                        Direccion = c.Direccion,
-                        Telefono = c.Telefono,
-                        Correo = c.Correo
-                    }).ToList<object>();
+            m = context.Marca.Find(id);
+            m2.Nombre = m.Nombre;
+            m2.Comentario = m.Comentario;
+            return m2;
         }
     }
 }

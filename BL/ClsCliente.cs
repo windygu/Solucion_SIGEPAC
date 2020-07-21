@@ -15,7 +15,7 @@ namespace BL
     {
         Cliente c = null;
         ENCliente c2 = new ENCliente();
-        public override string registrar(ENCliente c)
+        public override string registrar(ENCliente c = null, ENMarca m = null)
         {
             context.registrarClientes(c.primerNombre, c.segundoNombre, c.primerApellido,
                 c.segundoApellido, c.dui, c.direccion, c.telefono, c.correo, salida);
@@ -23,7 +23,7 @@ namespace BL
             return salida.Value.ToString();
         }
 
-        public override string actualizar(int? id, ENCliente c)
+        public override string actualizar(int? id, ENCliente c = null, ENMarca m = null)
         {
             context.modificarClientes(id, c.primerNombre, c.segundoNombre, c.primerApellido,
                 c.segundoApellido, c.dui, c.direccion, c.telefono,

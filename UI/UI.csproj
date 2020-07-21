@@ -68,6 +68,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Marcas.xaml.cs">
       <DependentUpon>Marcas.xaml</DependentUpon>
     </Compile>
@@ -76,18 +80,14 @@
       <DependentUpon>RegistrarClientes.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValidarClientes.cs" />
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Marcas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -128,6 +128,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BL\BL.csproj">
+      <Project>{7CD94474-C3C2-4504-93B2-B5E18E326A99}</Project>
+      <Name>BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EN\EN.csproj">
       <Project>{e70ff249-571a-430c-9143-a84cb524bec8}</Project>
       <Name>EN</Name>

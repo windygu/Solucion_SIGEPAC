@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using System.Data;
 using EN;
 using BL;
-using DAL;
 using System.ComponentModel;
 
 namespace UI
@@ -128,9 +127,7 @@ namespace UI
                     dtgListadoClientes.ItemsSource = null;
                     dtgListadoClientes.ItemsSource = c.lista();
                 }
-                
             }
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

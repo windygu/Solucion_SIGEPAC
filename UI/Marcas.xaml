@@ -25,16 +25,16 @@
                 <RadioButton Name="rdbNombre" Grid.Column="0" Margin="20,10,30,10">Nombre</RadioButton>
             </WrapPanel>
             <Button Grid.Row="2" Width="100" Height="30" Content="Buscar" FontSize="18" VerticalContentAlignment="Center" Margin="380,5,314,10" Click="Button_Click"></Button>
-            <TextBox KeyDown="txtBuscador_KeyDown" Grid.Row="2" Name="txtBuscador" Width="350" Height="30" Margin="10,5,434,10" />
+            <TextBox Grid.Row="2" Name="txtBuscador" Width="350" Height="30" Margin="10,5,434,10" />
         </Grid>
 
-        <DataGrid SelectionMode="Single" SelectedValuePath="Id" Grid.Row="1" Margin="10" Name="dtgListadoClientes" 
+        <DataGrid SelectionMode="Single" SelectedValuePath="Id" Grid.Row="1" Margin="10" Name="dtgListadoMarcas" 
           CanUserReorderColumns="False" CanUserResizeColumns="True" CanUserSortColumns="False" 
            CanUserResizeRows="False" IsReadOnly="True" Height="545" AutoGenerateColumns="False" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Width="30" Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Id" Width="35" Binding="{Binding Id}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Nombre" Width="200" Binding="{Binding Nombre}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Comentario" Width="105" Binding="{Binding Comentario}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Comentario" Width="*" Binding="{Binding Comentario}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button Name="btnAgregar" Click="btnAgregar_Click" Grid.Row="2" Width="85" Height="30" Margin="55,10,452,10">Registrar</Button>

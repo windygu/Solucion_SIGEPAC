@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BL;
 namespace UI
 {
     /// <summary>
@@ -19,9 +19,11 @@ namespace UI
     /// </summary>
     public partial class Marcas : Window
     {
+        BLMarca m = new BLMarca();
         public Marcas()
         {
             InitializeComponent();
+            cargarDatos();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -47,6 +49,25 @@ namespace UI
         private void btnActual_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        void cargarDatos(int? id = null, string nombre = null)
+        {
+            if  (id != null)
+            {
+                dtgListadoMarcas.ItemsSource = null;
+                dtgListadoMarcas.ItemsSource = m.lista(id: id);
+            }
+            else if (nombre != null)
+            {
+                dtgListadoMarcas.ItemsSource = null;
+                dtgListadoMarcas.ItemsSource = m.lista(nombre: nombre);
+            }
+            else
+            {
+                dtgListadoMarcas.ItemsSource = null;
+                dtgListadoMarcas.ItemsSource = m.lista();
+            }
         }
     }
 }

@@ -68,6 +68,9 @@
     <Compile Include="listadoClientes_Result.cs">
       <DependentUpon>MiModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="listadoMarcas_Result.cs">
+      <DependentUpon>MiModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="listadoPedidos_Result.cs">
       <DependentUpon>MiModelo.tt</DependentUpon>
     </Compile>
