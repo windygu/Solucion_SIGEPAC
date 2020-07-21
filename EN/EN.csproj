@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Cliente.cs" />
     <Compile Include="DetallePedido.cs" />
+    <Compile Include="ENMarca.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
