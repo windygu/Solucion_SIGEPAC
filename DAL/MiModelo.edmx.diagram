@@ -14,6 +14,7 @@
         <AssociationConnector Association="SIGEPACModel.FK_DetallePedido_Pedido" ManuallyRouted="false" />
         <AssociationConnector Association="SIGEPACModel.FK_DetallePedido_Producto" ManuallyRouted="false" />
         <AssociationConnector Association="SIGEPACModel.FK_Producto_Marca" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SIGEPACModel.Usuario" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

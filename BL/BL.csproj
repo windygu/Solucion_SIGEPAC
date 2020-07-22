@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLMarca.cs" />
+    <Compile Include="BLUsuario.cs" />
     <Compile Include="ClsCliente.cs" />
     <Compile Include="Gestion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

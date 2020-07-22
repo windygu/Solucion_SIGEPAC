@@ -18,6 +18,5 @@ namespace BL
         public abstract string eliminar(int id);
         public abstract List<object> lista(string nombre = null, string apellido = null, int? id = null, string dui = null);
         public abstract object buscar(int? id=null);
-
     }
 }

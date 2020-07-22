@@ -33,12 +33,13 @@ namespace UI
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-
+            RegistrarMarcas rm = new RegistrarMarcas();
+            rm.Show();
         }
 
         private void btnActualizar_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
@@ -48,7 +49,7 @@ namespace UI
 
         private void btnActual_Click(object sender, RoutedEventArgs e)
         {
-
+            cargarDatos();
         }
 
         void cargarDatos(int? id = null, string nombre = null)
@@ -68,6 +69,7 @@ namespace UI
                 dtgListadoMarcas.ItemsSource = null;
                 dtgListadoMarcas.ItemsSource = m.lista();
             }
+            
         }
     }
 }

@@ -61,6 +61,15 @@
           <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="Precio" Type="decimal" Precision="5" Scale="2" />
         </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StatusAdmin" Type="bit" Nullable="false" />
+        </EntityType>
         <Association Name="FK_DetallePedido_Pedido">
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
           <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
@@ -168,6 +177,7 @@
           <EntitySet Name="Marca" EntityType="Self.Marca" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_DetallePedido_Pedido" Association="Self.FK_DetallePedido_Pedido">
             <End Role="Pedido" EntitySet="Pedido" />
             <End Role="DetallePedido" EntitySet="DetallePedido" />
@@ -376,6 +386,7 @@
             <Parameter Name="Comentario" Mode="In" Type="String" />
             <Parameter Name="msj" Mode="InOut" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Usuario" EntityType="SIGEPACModel.Usuario" />
         </EntityContainer>
         <ComplexType Name="listadoClientes_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -402,6 +413,15 @@
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="75" />
           <Property Type="String" Name="Comentario" Nullable="false" MaxLength="500" />
         </ComplexType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Clave" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StatusAdmin" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -512,6 +532,16 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="modificarMarcas" FunctionName="SIGEPACModel.Store.modificarMarcas" />
           <FunctionImportMapping FunctionImportName="registrarMarcas" FunctionName="SIGEPACModel.Store.registrarMarcas" />
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="SIGEPACModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="StatusAdmin" ColumnName="StatusAdmin" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

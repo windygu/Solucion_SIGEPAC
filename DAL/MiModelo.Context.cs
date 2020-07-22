@@ -32,6 +32,7 @@ namespace DAL
         public virtual DbSet<Marca> Marca { get; set; }
         public virtual DbSet<Pedido> Pedido { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
     
         public virtual int eliminarClientes(Nullable<int> id, ObjectParameter msj)
         {
