@@ -6,12 +6,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+
 namespace UI
 {
     public class ValidarClientes : ObservableObjects, IDataErrorInfo
     {
         string pNombre, pApellido, sApellido, dui, direccion, telefono, correo;
-
+        
         public string Error { get { return null; } }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         
