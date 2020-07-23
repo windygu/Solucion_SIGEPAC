@@ -11,7 +11,7 @@ namespace BL
 {
     public abstract class Gestion
     {
-        public SIGEPACEntities context = new SIGEPACEntities();
+        public GestionPedidosAlimentosDCEntities context = new GestionPedidosAlimentosDCEntities();
         public ObjectParameter salida = new ObjectParameter("msj", typeof(string));
         public abstract string registrar(ENCliente c = null, ENMarca m = null);
         public abstract string actualizar(int? id, ENCliente p = null, ENMarca m = null);

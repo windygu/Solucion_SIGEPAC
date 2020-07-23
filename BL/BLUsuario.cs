@@ -10,7 +10,7 @@ namespace BL
 {
     public class BLUsuario
     {
-        SIGEPACEntities context = new SIGEPACEntities();
+        GestionPedidosAlimentosDCEntities context = new GestionPedidosAlimentosDCEntities();
         ENUsuario c = new ENUsuario();
         Usuario c2 = new Usuario();
 

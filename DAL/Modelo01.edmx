@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SIGEPACModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="GestionPedidosAlimentosDCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Id" />
@@ -136,7 +136,6 @@
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="listadoPedidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="modificarClientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="primerNombre" Type="varchar" Mode="In" />
@@ -171,7 +170,7 @@
           <Parameter Name="Comentario" Type="varchar" Mode="In" />
           <Parameter Name="msj" Type="varchar" Mode="InOut" />
         </Function>
-        <EntityContainer Name="SIGEPACModelStoreContainer">
+        <EntityContainer Name="GestionPedidosAlimentosDCModelStoreContainer">
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetallePedido" EntityType="Self.DetallePedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Marca" EntityType="Self.Marca" Schema="dbo" store:Type="Tables" />
@@ -195,10 +194,11 @@
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SIGEPACModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="GestionPedidosAlimentosDCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Id" />
@@ -263,6 +263,15 @@
           <NavigationProperty Name="DetallePedido" Relationship="Self.FK_DetallePedido_Producto" FromRole="Producto" ToRole="DetallePedido" />
           <NavigationProperty Name="Marca" Relationship="Self.FK_Producto_Marca" FromRole="Producto" ToRole="Marca" />
         </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StatusAdmin" Type="Boolean" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Pedido_Cliente">
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
@@ -311,12 +320,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SIGEPACEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GestionPedidosAlimentosDCEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="DetallePedido" EntityType="Self.DetallePedido" />
           <EntitySet Name="Marca" EntityType="Self.Marca" />
           <EntitySet Name="Pedido" EntityType="Self.Pedido" />
           <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="FK_Pedido_Cliente" Association="Self.FK_Pedido_Cliente">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Pedido" EntitySet="Pedido" />
@@ -337,11 +347,19 @@
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="msj" Mode="InOut" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="listadoClientes" ReturnType="Collection(SIGEPACModel.listadoClientes_Result)">
+          <FunctionImport Name="eliminarMarcas">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="msj" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="listadoClientes" ReturnType="Collection(GestionPedidosAlimentosDCModel.listadoClientes_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="primerNombre" Mode="In" Type="String" />
             <Parameter Name="primerApellido" Mode="In" Type="String" />
             <Parameter Name="dui" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="listadoMarcas" ReturnType="Collection(GestionPedidosAlimentosDCModel.listadoMarcas_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="modificarClientes">
             <Parameter Name="Id" Mode="In" Type="Int32" />
@@ -355,6 +373,12 @@
             <Parameter Name="correo" Mode="In" Type="String" />
             <Parameter Name="msj" Mode="InOut" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="modificarMarcas">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Comentario" Mode="In" Type="String" />
+            <Parameter Name="msj" Mode="InOut" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="registrarClientes">
             <Parameter Name="primerNombre" Mode="In" Type="String" />
             <Parameter Name="segundoNombre" Mode="In" Type="String" />
@@ -366,27 +390,11 @@
             <Parameter Name="correo" Mode="In" Type="String" />
             <Parameter Name="msj" Mode="InOut" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="listadoPedidos" ReturnType="Collection(SIGEPACModel.listadoPedidos_Result)" />
-          <FunctionImport Name="eliminarMarcas">
-            <Parameter Name="id" Mode="In" Type="Int32" />
-            <Parameter Name="msj" Mode="InOut" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="listadoMarcas" ReturnType="Collection(SIGEPACModel.listadoMarcas_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="modificarMarcas">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Comentario" Mode="In" Type="String" />
-            <Parameter Name="msj" Mode="InOut" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="registrarMarcas">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Comentario" Mode="In" Type="String" />
             <Parameter Name="msj" Mode="InOut" Type="String" />
           </FunctionImport>
-          <EntitySet Name="Usuario" EntityType="SIGEPACModel.Usuario" />
         </EntityContainer>
         <ComplexType Name="listadoClientes_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -399,37 +407,19 @@
           <Property Type="String" Name="Telefono" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="Correo" Nullable="true" MaxLength="70" />
         </ComplexType>
-        <ComplexType Name="listadoPedidos_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="Int32" Name="IdCliente" Nullable="false" />
-          <Property Type="Int32" Name="NumeroPedido" Nullable="false" />
-          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" />
-          <Property Type="DateTime" Name="FechaEntrega" Nullable="false" />
-          <Property Type="String" Name="DireccionEntrega" Nullable="false" MaxLength="255" />
-          <Property Type="String" Name="Estado" Nullable="true" MaxLength="11" />
-        </ComplexType>
         <ComplexType Name="listadoMarcas_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="75" />
           <Property Type="String" Name="Comentario" Nullable="false" MaxLength="500" />
         </ComplexType>
-        <EntityType Name="Usuario">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Usuario1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Clave" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="StatusAdmin" Type="Boolean" Nullable="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SIGEPACModelStoreContainer" CdmEntityContainer="SIGEPACEntities">
+        <EntityContainerMapping StorageEntityContainer="GestionPedidosAlimentosDCModelStoreContainer" CdmEntityContainer="GestionPedidosAlimentosDCEntities">
           <EntitySetMapping Name="Cliente">
-            <EntityTypeMapping TypeName="SIGEPACModel.Cliente">
+            <EntityTypeMapping TypeName="GestionPedidosAlimentosDCModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
@@ -444,7 +434,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DetallePedido">
-            <EntityTypeMapping TypeName="SIGEPACModel.DetallePedido">
+            <EntityTypeMapping TypeName="GestionPedidosAlimentosDCModel.DetallePedido">
               <MappingFragment StoreEntitySet="DetallePedido">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
@@ -457,7 +447,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Marca">
-            <EntityTypeMapping TypeName="SIGEPACModel.Marca">
+            <EntityTypeMapping TypeName="GestionPedidosAlimentosDCModel.Marca">
               <MappingFragment StoreEntitySet="Marca">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -466,7 +456,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pedido">
-            <EntityTypeMapping TypeName="SIGEPACModel.Pedido">
+            <EntityTypeMapping TypeName="GestionPedidosAlimentosDCModel.Pedido">
               <MappingFragment StoreEntitySet="Pedido">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
@@ -479,7 +469,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Producto">
-            <EntityTypeMapping TypeName="SIGEPACModel.Producto">
+            <EntityTypeMapping TypeName="GestionPedidosAlimentosDCModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
@@ -489,10 +479,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="eliminarClientes" FunctionName="SIGEPACModel.Store.eliminarClientes" />
-          <FunctionImportMapping FunctionImportName="listadoClientes" FunctionName="SIGEPACModel.Store.listadoClientes">
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="GestionPedidosAlimentosDCModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="StatusAdmin" ColumnName="StatusAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="eliminarClientes" FunctionName="GestionPedidosAlimentosDCModel.Store.eliminarClientes" />
+          <FunctionImportMapping FunctionImportName="eliminarMarcas" FunctionName="GestionPedidosAlimentosDCModel.Store.eliminarMarcas" />
+          <FunctionImportMapping FunctionImportName="listadoClientes" FunctionName="GestionPedidosAlimentosDCModel.Store.listadoClientes">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="SIGEPACModel.listadoClientes_Result">
+              <ComplexTypeMapping TypeName="GestionPedidosAlimentosDCModel.listadoClientes_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
                 <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
@@ -505,43 +506,19 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="modificarClientes" FunctionName="SIGEPACModel.Store.modificarClientes" />
-          <FunctionImportMapping FunctionImportName="registrarClientes" FunctionName="SIGEPACModel.Store.registrarClientes" />
-          <FunctionImportMapping FunctionImportName="listadoPedidos" FunctionName="SIGEPACModel.Store.listadoPedidos">
+          <FunctionImportMapping FunctionImportName="listadoMarcas" FunctionName="GestionPedidosAlimentosDCModel.Store.listadoMarcas">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="SIGEPACModel.listadoPedidos_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
-                <ScalarProperty Name="NumeroPedido" ColumnName="NumeroPedido" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
-                <ScalarProperty Name="DireccionEntrega" ColumnName="DireccionEntrega" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="eliminarMarcas" FunctionName="SIGEPACModel.Store.eliminarMarcas" />
-          <FunctionImportMapping FunctionImportName="listadoMarcas" FunctionName="SIGEPACModel.Store.listadoMarcas">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SIGEPACModel.listadoMarcas_Result">
+              <ComplexTypeMapping TypeName="GestionPedidosAlimentosDCModel.listadoMarcas_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="modificarMarcas" FunctionName="SIGEPACModel.Store.modificarMarcas" />
-          <FunctionImportMapping FunctionImportName="registrarMarcas" FunctionName="SIGEPACModel.Store.registrarMarcas" />
-          <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="SIGEPACModel.Usuario">
-              <MappingFragment StoreEntitySet="Usuario">
-                <ScalarProperty Name="StatusAdmin" ColumnName="StatusAdmin" />
-                <ScalarProperty Name="Clave" ColumnName="Clave" />
-                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="modificarClientes" FunctionName="GestionPedidosAlimentosDCModel.Store.modificarClientes" />
+          <FunctionImportMapping FunctionImportName="modificarMarcas" FunctionName="GestionPedidosAlimentosDCModel.Store.modificarMarcas" />
+          <FunctionImportMapping FunctionImportName="registrarClientes" FunctionName="GestionPedidosAlimentosDCModel.Store.registrarClientes" />
+          <FunctionImportMapping FunctionImportName="registrarMarcas" FunctionName="GestionPedidosAlimentosDCModel.Store.registrarMarcas" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

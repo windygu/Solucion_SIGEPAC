@@ -54,7 +54,7 @@ namespace UI
         private void btnGuardarCliente_Click(object sender, RoutedEventArgs e)
         {
             string msj = "";
-            ValidarClientes ob = new ValidarClientes();
+            ValidarClientess ob = new ValidarClientess();
             ObservableObjects ob1 = new ObservableObjects();
             if
             (

@@ -58,45 +58,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cliente.cs">
-      <DependentUpon>MiModelo.tt</DependentUpon>
+      <DependentUpon>Modelo01.tt</DependentUpon>
     </Compile>
     <Compile Include="ClsManejador.cs" />
     <Compile Include="ClsParametros.cs" />
     <Compile Include="DetallePedido.cs">
-      <DependentUpon>MiModelo.tt</DependentUpon>
+      <DependentUpon>Modelo01.tt</DependentUpon>
     </Compile>
     <Compile Include="listadoClientes_Result.cs">
-      <DependentUpon>MiModelo.tt</DependentUpon>
+      <DependentUpon>Modelo01.tt</DependentUpon>
     </Compile>
     <Compile Include="listadoMarcas_Result.cs">
-      <DependentUpon>MiModelo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="listadoPedidos_Result.cs">
-      <DependentUpon>MiModelo.tt</DependentUpon>
+      <DependentUpon>Modelo01.tt</DependentUpon>
     </Compile>
     <Compile Include="Marca.cs">
-      <DependentUpon>MiModelo.tt</DependentUpon>
+      <DependentUpon>Modelo01.tt</DependentUpon>
     </Compile>
-    <Compile Include="MiModelo.Context.cs">
+    <Compile Include="Modelo01.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MiModelo.Context.tt</DependentUpon>
+      <DependentUpon>Modelo01.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="MiModelo.cs">
+    <Compile Include="Modelo01.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MiModelo.tt</DependentUpon>
+      <DependentUpon>Modelo01.tt</DependentUpon>
     </Compile>
-    <Compile Include="MiModelo.Designer.cs">
+    <Compile Include="Modelo01.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MiModelo.edmx</DependentUpon>
+      <DependentUpon>Modelo01.edmx</DependentUpon>
     </Compile>
     <Compile Include="Pedido.cs">
-      <DependentUpon>MiModelo.tt</DependentUpon>
+      <DependentUpon>Modelo01.tt</DependentUpon>
     </Compile>
     <Compile Include="Producto.cs">
-      <DependentUpon>MiModelo.tt</DependentUpon>
+      <DependentUpon>Modelo01.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -105,7 +102,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Usuario.cs">
-      <DependentUpon>MiModelo.tt</DependentUpon>
+      <DependentUpon>Modelo01.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -115,13 +112,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="MiModelo.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MiModelo.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="App.Config" />
-    <None Include="MiModelo.edmx.diagram">
-      <DependentUpon>MiModelo.edmx</DependentUpon>
+    <EntityDeploy Include="Modelo01.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Modelo01.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Modelo01.edmx.diagram">
+      <DependentUpon>Modelo01.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -133,15 +130,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MiModelo.Context.tt">
+    <Content Include="Modelo01.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MiModelo.Context.cs</LastGenOutput>
-      <DependentUpon>MiModelo.edmx</DependentUpon>
+      <DependentUpon>Modelo01.edmx</DependentUpon>
+      <LastGenOutput>Modelo01.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="MiModelo.tt">
+    <Content Include="Modelo01.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MiModelo.edmx</DependentUpon>
-      <LastGenOutput>MiModelo.cs</LastGenOutput>
+      <DependentUpon>Modelo01.edmx</DependentUpon>
+      <LastGenOutput>Modelo01.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

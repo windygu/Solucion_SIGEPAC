@@ -88,11 +88,12 @@
     <Compile Include="Splash.xaml.cs">
       <DependentUpon>Splash.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ValidarClientes.cs" />
+    <Compile Include="ValidarClientess.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ValidarMarcas.cs" />
     <Page Include="Inicio Sesión.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

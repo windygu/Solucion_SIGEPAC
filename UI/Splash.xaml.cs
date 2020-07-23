@@ -23,11 +23,5 @@ namespace UI
         {
             InitializeComponent();
         }
-
-        public double Progress
-        {
-            get { return progressBar.Value; }
-            set { progressBar.Value = value; }
-        }
     }
 }

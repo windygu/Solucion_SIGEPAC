@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace UI
 {
-    public class ValidarClientes : ObservableObjects, IDataErrorInfo
+    public class ValidarClientess : ObservableObjects, IDataErrorInfo
     {
         string pNombre, pApellido, sApellido, dui, direccion, telefono, correo;
         

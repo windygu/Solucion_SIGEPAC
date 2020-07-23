@@ -15,10 +15,10 @@ namespace DAL
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class SIGEPACEntities : DbContext
+    public partial class GestionPedidosAlimentosDCEntities : DbContext
     {
-        public SIGEPACEntities()
-            : base("name=SIGEPACEntities")
+        public GestionPedidosAlimentosDCEntities()
+            : base("name=GestionPedidosAlimentosDCEntities")
         {
         }
     
@@ -43,6 +43,15 @@ namespace DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("eliminarClientes", idParameter, msj);
         }
     
+        public virtual int eliminarMarcas(Nullable<int> id, ObjectParameter msj)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("eliminarMarcas", idParameter, msj);
+        }
+    
         public virtual ObjectResult<listadoClientes_Result> listadoClientes(Nullable<int> id, string primerNombre, string primerApellido, string dui)
         {
             var idParameter = id.HasValue ?
@@ -62,6 +71,19 @@ namespace DAL
                 new ObjectParameter("dui", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listadoClientes_Result>("listadoClientes", idParameter, primerNombreParameter, primerApellidoParameter, duiParameter);
+        }
+    
+        public virtual ObjectResult<listadoMarcas_Result> listadoMarcas(Nullable<int> id, string nombre)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listadoMarcas_Result>("listadoMarcas", idParameter, nombreParameter);
         }
     
         public virtual int modificarClientes(Nullable<int> id, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string dui, string direccion, string telefono, string correo, ObjectParameter msj)
@@ -105,6 +127,23 @@ namespace DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modificarClientes", idParameter, primerNombreParameter, segundoNombreParameter, primerApellidoParameter, segundoApellidoParameter, duiParameter, direccionParameter, telefonoParameter, correoParameter, msj);
         }
     
+        public virtual int modificarMarcas(Nullable<int> id, string nombre, string comentario, ObjectParameter msj)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var comentarioParameter = comentario != null ?
+                new ObjectParameter("Comentario", comentario) :
+                new ObjectParameter("Comentario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modificarMarcas", idParameter, nombreParameter, comentarioParameter, msj);
+        }
+    
         public virtual int registrarClientes(string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string dui, string direccion, string telefono, string correo, ObjectParameter msj)
         {
             var primerNombreParameter = primerNombre != null ?
@@ -140,50 +179,6 @@ namespace DAL
                 new ObjectParameter("correo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("registrarClientes", primerNombreParameter, segundoNombreParameter, primerApellidoParameter, segundoApellidoParameter, duiParameter, direccionParameter, telefonoParameter, correoParameter, msj);
-        }
-    
-        public virtual ObjectResult<listadoPedidos_Result> listadoPedidos()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listadoPedidos_Result>("listadoPedidos");
-        }
-    
-        public virtual int eliminarMarcas(Nullable<int> id, ObjectParameter msj)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("eliminarMarcas", idParameter, msj);
-        }
-    
-        public virtual ObjectResult<listadoMarcas_Result> listadoMarcas(Nullable<int> id, string nombre)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listadoMarcas_Result>("listadoMarcas", idParameter, nombreParameter);
-        }
-    
-        public virtual int modificarMarcas(Nullable<int> id, string nombre, string comentario, ObjectParameter msj)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var comentarioParameter = comentario != null ?
-                new ObjectParameter("Comentario", comentario) :
-                new ObjectParameter("Comentario", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modificarMarcas", idParameter, nombreParameter, comentarioParameter, msj);
         }
     
         public virtual int registrarMarcas(string nombre, string comentario, ObjectParameter msj)

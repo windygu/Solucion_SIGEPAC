@@ -6,8 +6,19 @@
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
         Title="RegistrarClientes" Height="500" Width="600" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ControlTemplate x:Key="errorTemplate">
+            <Border BorderBrush="OrangeRed" BorderThickness="2">
+                <Grid>
+                    <AdornedElementPlaceholder></AdornedElementPlaceholder>
+                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="OrangeRed"
+                               VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0"></TextBlock>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+    </Window.Resources>
     <Window.DataContext>
-        <local:ValidarClientes/>
+        <local:ValidarClientess/>
     </Window.DataContext>
     <Grid>
         <StackPanel Margin="5">

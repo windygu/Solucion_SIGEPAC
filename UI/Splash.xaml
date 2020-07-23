@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="Splash" Height="300" Width="300" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <TextBlock FontSize="20" Width="100" VerticalAlignment="Center" Margin="90,60,102,182">Bienvenido</TextBlock>
-        <ProgressBar Name="progressBar" Height="20" Width="200"></ProgressBar>
-        <TextBlock Name="tbInfo" Width="230" VerticalAlignment="Bottom" Margin="26,0,36,83"></TextBlock>
-        
+        Title="Splash" Height="600" Width="500" WindowStyle="None" Background="Black" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,1,0,-1">
+        <TextBlock FontSize="40" Width="200" VerticalAlignment="Center" Foreground="White" Margin="90,60,102,182">Bienvenido</TextBlock>
+        <TextBlock Name="tbInfo" Text="{Binding ElementName=progressBar, 
+            Path=Value, StringFormat={}Cargado al {0:0} por ciento...}" VerticalAlignment="Center" Margin="50,184,66,100" ></TextBlock>
+        <Ellipse Name="elipse1" Height="20" Width="20" Margin="181,314,299,266" Fill="DarkGreen" Visibility="Visible"></Ellipse>
+        <Ellipse Name="elipse2" Height="20" Width="20" Margin="134,169,156,121" Fill="DarkGreen" Visibility="Visible"></Ellipse>
+        <Ellipse Name="elipse3" Height="20" Width="20" Margin="279,314,201,266" Fill="DarkGreen" Visibility="Visible"></Ellipse>
+        <Ellipse Name="elipse4" Height="20" Width="20" Margin="162,169,128,121" Fill="DarkGreen" Visibility="Hidden"></Ellipse>
     </Grid>
 </Window>

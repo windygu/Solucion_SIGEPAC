@@ -6,8 +6,19 @@
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
         Title="RegistrarMarcas" Height="500" Width="600" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ControlTemplate x:Key="errorTemplate">
+            <Border BorderBrush="OrangeRed" BorderThickness="2">
+                <Grid>
+                    <AdornedElementPlaceholder></AdornedElementPlaceholder>
+                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="OrangeRed"
+                               VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0"></TextBlock>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+    </Window.Resources>
     <Window.DataContext>
-        <local:ValidarClientes/>
+        <local:ValidarMarcas/>
     </Window.DataContext>
     <Grid>
         <StackPanel Margin="5">
@@ -23,11 +34,11 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Column="0" Grid.Row="0" FontSize="15" FontWeight="Medium" Width="200" HorizontalContentAlignment="Left" Margin="89,5,269,30" Grid.RowSpan="2">Nombre de la marca:</Label>
                 <Label Grid.Column="0" Grid.Row="2" FontSize="15" FontWeight="Medium" Width="200" HorizontalContentAlignment="Left" Margin="89,10,269,25" Grid.RowSpan="2">Comentario:</Label>
-                <TextBox MaxLength="50" Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding PRIMERNOMBRE, Mode=TwoWay, ValidatesOnDataErrors=True,
-                UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[primerNombre]}" 
+                <TextBox MaxLength="50" Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding NOMBRE, Mode=TwoWay, ValidatesOnDataErrors=True,
+                UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[NOMBRE]}" 
                   Name="txNombreMarca" Grid.Row="1" Width="350" Margin="0,5,30,5"></TextBox>
-                <TextBox MaxLength="50" Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding PRIMERAPELLIDO, ValidatesOnDataErrors=True,
-                UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[primerApellido]}"
+                <TextBox MaxLength="50" Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding COMENTARIO, ValidatesOnDataErrors=True,
+                UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[COMENTARIO]}"
                     Name="txtComentario" Grid.Row="3" Width="350" Margin="0,5,30,5"></TextBox>
                 <Button Name="btnGuardarCliente" Click="btnGuardarMarca_Click" Grid.Row="4" Height="40" Width="130" Margin="309,25,119,25" FontSize="20" FontWeight="Medium">Guardar</Button>
                 <Button Name="btnNuevoCliente" Grid.Row="4" Height="40" Width="130" Margin="89,25,339,25" FontSize="20" FontWeight="Medium" Click="btnNuevoCliente_Click">Nuevo</Button>
