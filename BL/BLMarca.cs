@@ -9,8 +9,8 @@ namespace BL
 {
     public class BLMarca : Gestion
     {
-        Marca m = new Marca();
-        ENMarca m2 = new ENMarca();
+        Marca m = null;
+        
         public override string registrar(ENCliente c = null, ENMarca marca = null)
         {
             context.registrarMarcas(marca.Nombre, marca.Comentario, salida);
@@ -49,6 +49,7 @@ namespace BL
         public override object buscar(int? id)
         {
             m = context.Marca.Find(id);
+            ENMarca m2 = new ENMarca();
             m2.Nombre = m.Nombre;
             m2.Comentario = m.Comentario;
             return m2;

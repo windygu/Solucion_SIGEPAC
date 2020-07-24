@@ -26,11 +26,6 @@ namespace UI
             cargarDatos();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
             RegistrarMarcas rm = new RegistrarMarcas();
@@ -39,16 +34,22 @@ namespace UI
 
         private void btnActualizar_Click(object sender, RoutedEventArgs e)
         {
-            
+            cargarDatos();            
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void btnActual_Click(object sender, RoutedEventArgs e)
-        {
+            if (dtgListadoMarcas.SelectedItem != null)
+            {
+                int id = int.Parse(dtgListadoMarcas.SelectedValue.ToString());
+                MessageBoxResult result = MessageBox.Show("¿Desea eliminar el cliente?", "Aviso",
+                    MessageBoxButton.YesNo, MessageBoxImage.Information, MessageBoxResult.No);
+                if (result == MessageBoxResult.Yes) m.eliminar(id);
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un elemento para eliminar.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
             cargarDatos();
         }
 
@@ -70,6 +71,20 @@ namespace UI
                 dtgListadoMarcas.ItemsSource = m.lista();
             }
             
+        }
+
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            if (dtgListadoMarcas.SelectedItem != null)
+            {
+                int id = int.Parse(dtgListadoMarcas.SelectedValue.ToString());
+                RegistrarMarcas a = new RegistrarMarcas(id);
+                a.Show();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un elemento para editar.");
+            }
         }
     }
 }

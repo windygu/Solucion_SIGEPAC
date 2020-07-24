@@ -41,7 +41,7 @@
                 UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[COMENTARIO]}"
                     Name="txtComentario" Grid.Row="3" Width="350" Margin="0,5,30,5"></TextBox>
                 <Button Name="btnGuardarCliente" Click="btnGuardarMarca_Click" Grid.Row="4" Height="40" Width="130" Margin="309,25,119,25" FontSize="20" FontWeight="Medium">Guardar</Button>
-                <Button Name="btnNuevoCliente" Grid.Row="4" Height="40" Width="130" Margin="89,25,339,25" FontSize="20" FontWeight="Medium" Click="btnNuevoCliente_Click">Nuevo</Button>
+                <Button Name="btnNuevaMarca" Grid.Row="4" Height="40" Width="130" Margin="89,25,339,25" FontSize="20" FontWeight="Medium" Click="btnNuevaMarca_Click">Nuevo</Button>
             </Grid>
         </StackPanel>
 

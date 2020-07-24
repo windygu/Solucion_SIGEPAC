@@ -21,7 +21,6 @@ namespace UI
     /// </summary>
     public partial class RegistrarClientes : Window
     {
-        //ClsCliente clsCliente = new ClsCliente();
         ENCliente c = new ENCliente();
         BLCliente c2 = new BLCliente();
         int? id = null;
