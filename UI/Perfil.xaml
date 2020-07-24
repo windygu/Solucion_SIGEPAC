@@ -1,0 +1,21 @@
+﻿<Window x:Class="UI.Perfil"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+        Title="Perfil" Height="800" Width="650">
+    <Grid>
+        <Image Name="imgAdmin" Width="250" Height="250" Stretch="Fill" Margin="172,34,220,485"></Image>
+        <TextBlock FontSize="22" Width="100" Height="30" Margin="77,320,465,419" >Usuario</TextBlock>
+        <TextBox Name="txtUsuario" Width="300" Height="40" FontSize="20" Margin="77,361,265,368" ></TextBox>
+        <TextBlock FontSize="22" Width="100" Height="30" Margin="77,436,465,303" >Clave</TextBlock>
+        <PasswordBox   Name="pswClave" Width="300" Height="40" FontSize="20" Margin="77,471,265,258" ></PasswordBox>
+        <Button Name="btnIngresar" Click="btnIngresar_Click" Height="45" Width="120" FontSize="20" VerticalAlignment="Center" 
+                    Margin="333,606,189,118">Guardar</Button>
+        <Button Height="44" Width="120" FontSize="20" VerticalAlignment="Center" Margin="77,606,445,119">Salir</Button>
+        <Button Width="150" Height="45" Name="btnExaminar" FontSize="20" Click="btnExaminar_Click" Content="Cambiar imagen" Margin="474,289,18,435"></Button>
+
+    </Grid>
+</Window>

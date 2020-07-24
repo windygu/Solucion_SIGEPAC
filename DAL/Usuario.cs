@@ -18,5 +18,6 @@ namespace DAL
         public string Usuario1 { get; set; }
         public string Clave { get; set; }
         public bool StatusAdmin { get; set; }
+        public byte[] Imagenes { get; set; }
     }
 }

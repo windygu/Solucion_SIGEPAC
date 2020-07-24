@@ -79,6 +79,9 @@
       <DependentUpon>Marcas.xaml</DependentUpon>
     </Compile>
     <Compile Include="ObservableObjects.cs" />
+    <Compile Include="Perfil.xaml.cs">
+      <DependentUpon>Perfil.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegistrarClientes.xaml.cs">
       <DependentUpon>RegistrarClientes.xaml</DependentUpon>
     </Compile>
@@ -103,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Marcas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Perfil.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

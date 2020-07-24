@@ -56,7 +56,7 @@ namespace UI
                     {
                         //Inicializamos la MainWindow , la establecemos como la ventana principal de la aplicacion y
                         //cerramos la pantalla Splash
-                        var mainWindow = new Marcas();
+                        var mainWindow = new Inicio_Sesión();
                         this.MainWindow = mainWindow;
                         mainWindow.Show();
                         splashScreen.Close();

@@ -10,11 +10,11 @@
         <EntityTypeShape EntityType="GestionPedidosAlimentosDCModel.Marca" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionPedidosAlimentosDCModel.Pedido" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionPedidosAlimentosDCModel.Producto" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionPedidosAlimentosDCModel.Usuario" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="GestionPedidosAlimentosDCModel.FK_Pedido_Cliente" ManuallyRouted="false" />
         <AssociationConnector Association="GestionPedidosAlimentosDCModel.FK_DetallePedido_Pedido" ManuallyRouted="false" />
         <AssociationConnector Association="GestionPedidosAlimentosDCModel.FK_DetallePedido_Producto" ManuallyRouted="false" />
         <AssociationConnector Association="GestionPedidosAlimentosDCModel.FK_Producto_Marca" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GestionPedidosAlimentosDCModel.Usuario" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

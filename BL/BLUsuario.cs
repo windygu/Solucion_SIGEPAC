@@ -25,5 +25,14 @@ namespace BL
             }
             else return null;
         }
+
+        public string insertarImagen(byte id, byte [] bin)
+        {
+            var query = (from u in context.Usuario where u.Id == id select u).FirstOrDefault();
+            query.Imagenes = bin;
+            context.SaveChanges();
+            string r = "Exito";
+            return r;
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace UI
             u2 = u.buscarUsuario(txtUsuario.Text, pswClave.Password);
             if (u2 != null)
             {
-                MainWindow mw = new MainWindow();
+                Perfil mw = new Perfil();
                 mw.Show();
             }
             else
