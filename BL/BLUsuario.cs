@@ -34,5 +34,12 @@ namespace BL
             string r = "Exito";
             return r;
         }
+
+        public byte[] cargarImagen(byte id)
+        {
+            var query = (from u in context.Usuario where u.Id == id select u).FirstOrDefault();
+            byte[] img = query.Imagenes;
+            return img;
+        }
     }
 }
