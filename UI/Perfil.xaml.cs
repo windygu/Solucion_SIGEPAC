@@ -45,7 +45,7 @@ namespace UI
             Stream stm = File.OpenRead(fileName);
             byte[] binaryImage = new byte[stm.Length];
             stm.Read(binaryImage, 0, (int)stm.Length);
-            string msg = u.insertarImagen(3, binaryImage);
+            string msg = u.insertarImagen(4, binaryImage);
             MessageBox.Show(msg, "Aviso");
         }
     }
