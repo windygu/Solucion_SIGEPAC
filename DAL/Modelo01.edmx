@@ -119,6 +119,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Buscar_Clientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="datos" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="eliminarClientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="msj" Type="varchar" Mode="InOut" />
@@ -386,6 +389,9 @@
             <Parameter Name="msj" Mode="InOut" Type="String" />
           </FunctionImport>
           <EntitySet Name="Usuario" EntityType="GestionPedidosAlimentosDCModel.Usuario" />
+          <FunctionImport Name="Buscar_Clientes" ReturnType="Collection(GestionPedidosAlimentosDCModel.Buscar_Clientes_Result)">
+            <Parameter Name="datos" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="listadoClientes_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -413,6 +419,17 @@
           <Property Name="StatusAdmin" Type="Boolean" Nullable="false" />
           <Property Name="Imagenes" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <ComplexType Name="Buscar_Clientes_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="PrimerNombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SegundoNombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SegundoApellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Dui" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Telefono" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="70" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -521,6 +538,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Buscar_Clientes" FunctionName="GestionPedidosAlimentosDCModel.Store.Buscar_Clientes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GestionPedidosAlimentosDCModel.Buscar_Clientes_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+                <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="Dui" ColumnName="Dui" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

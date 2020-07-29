@@ -16,13 +16,15 @@ using System.Data;
 using EN;
 using BL;
 using System.ComponentModel;
+using MahApps.Metro.Controls;
+using WPFColorPickerLib;
 
 namespace UI
 {
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         static BLCliente c = new BLCliente();
 
@@ -55,16 +57,20 @@ namespace UI
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (dtgListadoClientes.SelectedItem != null && dtgListadoClientes.SelectedItems.Count==1)
+            if (dtgListadoClientes.SelectedItem != null)
             {
-                int id = int.Parse(dtgListadoClientes.SelectedValue.ToString());
-                MessageBoxResult result = MessageBox.Show("¿Desea eliminar el cliente?", "Aviso", 
-                    MessageBoxButton.YesNo, MessageBoxImage.Information, MessageBoxResult.Yes);
-                if (result == MessageBoxResult.Yes) c.eliminar(id);
-            }
-            else if (dtgListadoClientes.SelectedItems.Count>1)
-            {
-                MessageBox.Show("Sólo puede eliminar un elemento a la vez.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                try
+                {
+                    int id = int.Parse(dtgListadoClientes.SelectedValue.ToString());
+                    MessageBoxResult result = MessageBox.Show("¿Desea eliminar el cliente?", "Aviso",
+                        MessageBoxButton.YesNo, MessageBoxImage.Information, MessageBoxResult.Yes);
+                    if (result == MessageBoxResult.Yes) c.eliminar(id);
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
             }
             else
             {
@@ -78,56 +84,65 @@ namespace UI
             cargarDatos();
         }
 
-        void cargarDatos(int? id = null, string nombre = null, string apellido = null, string dui = null)
+        public void cargarDatos(int? id = null, string nombre = null, string apellido = null, string dui = null)
         {
-          
-            if (nombre!=null)
+            try
             {
-                cboMostrando.SelectedItem = null;
-                dtgListadoClientes.ItemsSource = null;
-                dtgListadoClientes.ItemsSource = c.lista(nombre: nombre);
-            }
-            else if (apellido != null)
-            {
-                cboMostrando.SelectedItem = null;
-                dtgListadoClientes.ItemsSource = null;
-                dtgListadoClientes.ItemsSource = c.lista(apellido: apellido);
-            }
-            else if (id != null)
-            {
-                cboMostrando.SelectedItem = null;
-                dtgListadoClientes.ItemsSource = null;
-                dtgListadoClientes.ItemsSource = c.lista(id: id);
-            }
-            else if (dui != null)
-            {
-                cboMostrando.SelectedItem = null;
-                dtgListadoClientes.ItemsSource = null;
-                dtgListadoClientes.ItemsSource = c.lista(dui: dui);
-            }
-            else
-            {
-                if (cboiConPedidos.IsSelected == true)
+                if (nombre != null)
                 {
+                    cboMostrando.SelectedItem = null;
                     dtgListadoClientes.ItemsSource = null;
-                    dtgListadoClientes.ItemsSource = c.listaConPedido();
+                    dtgListadoClientes.ItemsSource = c.lista(nombre: nombre);
                 }
-                else if (cboiSinPedidos.IsSelected == true)
+                else if (apellido != null)
                 {
+                    cboMostrando.SelectedItem = null;
+                    dtgListadoClientes.ItemsSource = null;
+                    dtgListadoClientes.ItemsSource = c.lista(apellido: apellido);
+                }
+                else if (id != null)
+                {
+                    cboMostrando.SelectedItem = null;
+                    dtgListadoClientes.ItemsSource = null;
+                    dtgListadoClientes.ItemsSource = c.lista(id: id);
+                }
+                else if (dui != null)
+                {
+                    cboMostrando.SelectedItem = null;
+                    dtgListadoClientes.ItemsSource = null;
+                    dtgListadoClientes.ItemsSource = c.lista(dui: dui);
+                }
+                else
+                {
+                    if (cboiConPedidos.IsSelected == true)
+                    {
+                        dtgListadoClientes.ItemsSource = null;
+                        dtgListadoClientes.ItemsSource = c.listaConPedido();
+                    }
+                    else if (cboiSinPedidos.IsSelected == true)
+                    {
 
-                }
-                else if (cboiTodos.IsSelected==true)
-                {
-                    dtgListadoClientes.ItemsSource = null;
-                    dtgListadoClientes.ItemsSource = c.lista();
-                }
-                else if (cboMostrando.SelectedItem==null)
-                {
-                    cboiTodos.IsSelected = true;
-                    dtgListadoClientes.ItemsSource = null;
-                    dtgListadoClientes.ItemsSource = c.lista();
+                    }
+                    else if (cboiTodos.IsSelected == true)
+                    {
+                        dtgListadoClientes.ItemsSource = null;
+                        dtgListadoClientes.ItemsSource = c.lista();
+                    }
+                    else if (cboMostrando.SelectedItem == null)
+                    {
+                        cboiTodos.IsSelected = true;
+                        dtgListadoClientes.ItemsSource = null;
+                        dtgListadoClientes.ItemsSource = c.lista();
+                    }
                 }
             }
+            catch (Exception error)
+            {
+
+                MessageBox.Show(error.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+          
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -177,6 +192,40 @@ namespace UI
                 )
                     e.Handled = false;
                 else e.Handled = true;
+            }
+        }
+
+        private void txtBuscador_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtBuscador.Text.Length == 0)
+            {
+                tbMarca.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            tbMarca.Visibility = Visibility.Collapsed;
+            txtBuscador.Focus();
+        }
+
+        private void txtBuscador_GotFocus(object sender, RoutedEventArgs e)
+        {
+            tbMarca.Visibility = Visibility.Collapsed;
+        }
+
+        private void txtBuscador_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dtgListadoClientes.ItemsSource = c.lista(nombre: txtBuscador.Text);
+        }
+
+        private void btnColorFondo_Click(object sender, RoutedEventArgs e)
+        {
+            ColorDialog w = new ColorDialog();
+            w.Owner = this;
+            if (w.ShowDialog()==true)
+            {
+                Background = new SolidColorBrush(w.SelectedColor);
             }
         }
     }

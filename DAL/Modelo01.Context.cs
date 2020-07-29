@@ -193,5 +193,14 @@ namespace DAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("registrarMarcas", nombreParameter, comentarioParameter, msj);
         }
+    
+        public virtual ObjectResult<Buscar_Clientes_Result> Buscar_Clientes(string datos)
+        {
+            var datosParameter = datos != null ?
+                new ObjectParameter("datos", datos) :
+                new ObjectParameter("datos", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Buscar_Clientes_Result>("Buscar_Clientes", datosParameter);
+        }
     }
 }

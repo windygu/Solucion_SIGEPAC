@@ -43,7 +43,7 @@ namespace BL
         {
             if (nombre!=null)
             {
-                return context.listadoClientes(null, nombre, null, null).ToList<object>();
+                return context.Buscar_Clientes(nombre).ToList<object>();
              
             }
             else if (apellido != null)

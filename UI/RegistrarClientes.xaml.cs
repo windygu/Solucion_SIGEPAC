@@ -23,6 +23,7 @@ namespace UI
     {
         ENCliente c = new ENCliente();
         BLCliente c2 = new BLCliente();
+        MainWindow mw = new MainWindow();
         int? id = null;
 
         public RegistrarClientes(int? id = null)
@@ -100,15 +101,18 @@ namespace UI
                     if (id == null)
                     {
                         msj = c2.registrar(c);
+                        mw.cargarDatos();
                         MessageBox.Show(msj, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
                         msj = c2.actualizar(id, c);
+                        mw.cargarDatos();
                         MessageBoxResult r =
                         MessageBox.Show(msj + " ¿Desea cerrar el editor?", "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
                         if (r == MessageBoxResult.Yes) Close();
                     }
+                    
 
                 }
                 catch (Exception ex)

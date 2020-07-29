@@ -1,11 +1,13 @@
-﻿<Window x:Class="UI.MainWindow"
+﻿<mah:MetroWindow x:Class="UI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        Title="MainWindow" Height="700" Width="1100" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="120"></RowDefinition>
@@ -19,7 +21,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition>
-                    
+
                 </RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
@@ -29,10 +31,17 @@
                 <RadioButton Name="rdbNombre" Grid.Column="0" Margin="20,10,30,10">Nombre</RadioButton>
                 <RadioButton Name="rdbApellido" Grid.Column="2" Margin="20,10,30,10">Apellido</RadioButton>
                 <RadioButton Name="rdbDUI" Grid.Column="1" Margin="20,10,30,10">DUI</RadioButton>
+                <Button Name="btnColorFondo" Margin="20, 0, 0, 0" Click="btnColorFondo_Click" Width="150" Height="30" Content="Elegir color de fondo"></Button>
             </WrapPanel>
-            
-            <Button Grid.Row="2" Width="100" Height="30" Content="Buscar" FontSize="18" VerticalContentAlignment="Center" Margin="365,5,529,10" Click="Button_Click"></Button>
-            <TextBox KeyDown="txtBuscador_KeyDown" Grid.Row="2" Name="txtBuscador" Width="350" Height="30" Margin="10,5,634,10" />
+
+            <Button Grid.Row="2" Width="100" Height="30" Content="Buscar" FontSize="15" VerticalContentAlignment="Center" Margin="371,5,623,10" Click="Button_Click"></Button>
+            <TextBox TextChanged="txtBuscador_TextChanged" KeyDown="txtBuscador_KeyDown" Grid.Row="2" LostFocus="txtBuscador_LostFocus" Name="txtBuscador" Width="350" 
+                     GotFocus="txtBuscador_GotFocus" Height="30" Margin="10,5,734,10">
+            </TextBox>
+            <TextBlock Name="tbMarca" VerticalAlignment="Center" HorizontalAlignment="Left" 
+               Text="Buscar por nombre o apellido" Foreground="DarkGray" Margin="16,11,0,18" 
+               MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"  Grid.Row="2">
+            </TextBlock>
             <ComboBox Grid.Row="2" Width="230" Height="30" Name="cboMostrando" Margin="588,5,176,10">
                 <ComboBoxItem IsSelected="True" Name="cboiTodos">Todos</ComboBoxItem>
                 <ComboBoxItem Name="cboiConPedidos">Clientes con pedidos</ComboBoxItem>
@@ -44,11 +53,11 @@
           CanUserReorderColumns="False" CanUserResizeColumns="True" CanUserSortColumns="False" 
            CanUserResizeRows="False" IsReadOnly="True" Height="545" AutoGenerateColumns="False" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Width="30" Binding="{Binding Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="PrimerNombre" Width="105" Binding="{Binding PrimerNombre}"></DataGridTextColumn>
-                <DataGridTextColumn Header="SegundoNombre" Width="105" Binding="{Binding SegundoNombre}"></DataGridTextColumn>
-                <DataGridTextColumn Header="PrimerApellido" Width="105" Binding="{Binding PrimerApellido}"></DataGridTextColumn>
-                <DataGridTextColumn Header="SegundoApellido" Width="105" Binding="{Binding SegundoApellido}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Id"  Width="35" Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="PrimerNombre" Width="130" Binding="{Binding PrimerNombre}"></DataGridTextColumn>
+                <DataGridTextColumn Header="SegundoNombre" Width="130" Binding="{Binding SegundoNombre}"></DataGridTextColumn>
+                <DataGridTextColumn Header="PrimerApellido" Width="130" Binding="{Binding PrimerApellido}"></DataGridTextColumn>
+                <DataGridTextColumn Header="SegundoApellido" Width="130" Binding="{Binding SegundoApellido}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Dui" Width="90" Binding="{Binding Dui}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Direccion" Width="130" Binding="{Binding Direccion}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Telefono" Width="115" Binding="{Binding Telefono}"></DataGridTextColumn>
@@ -59,6 +68,6 @@
         <Button Name="btnActualizar" Click="btnActualizar_Click" Grid.Row="2" Width="85" Height="30" Margin="194,10,313,10">Editar</Button>
         <Button Name="btnEliminar" Click="btnEliminar_Click" Grid.Row="2" Width="85" Height="30" Margin="452,10,55,10">Eliminar</Button>
         <Button Name="btnActual" Click="btnActual_Click" Grid.Row="2" Width="85" Height="30" Margin="323,10,184,10">Actualizar</Button>
-
+        
     </Grid>
-</Window>
+</mah:MetroWindow>

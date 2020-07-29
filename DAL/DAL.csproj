@@ -57,6 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buscar_Clientes_Result.cs">
+      <DependentUpon>Modelo01.tt</DependentUpon>
+    </Compile>
     <Compile Include="Cliente.cs">
       <DependentUpon>Modelo01.tt</DependentUpon>
     </Compile>

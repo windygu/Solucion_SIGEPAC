@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Shapes;
 using System.Windows.Media;
+using MahApps.Metro.Controls;
 
 namespace UI
 {
@@ -47,7 +48,7 @@ namespace UI
 
                 for (int i = 0; i < 4; i++)
                 {
-                    Thread.Sleep(860);
+                    Thread.Sleep(4);
                     splashScreen.Dispatcher.Invoke(() => elipses[i].Fill= Brushes.LightGreen);
                 }
 
@@ -56,8 +57,8 @@ namespace UI
                     {
                         //Inicializamos la MainWindow , la establecemos como la ventana principal de la aplicacion y
                         //cerramos la pantalla Splash
-                        var mainWindow = new Inicio_Sesión();
-                        this.MainWindow = mainWindow;
+                        MainWindow mainWindow = new MainWindow();
+                        MainWindow = mainWindow;
                         mainWindow.Show();
                         splashScreen.Close();
                     });
