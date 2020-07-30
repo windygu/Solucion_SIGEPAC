@@ -1,10 +1,11 @@
-﻿<Window x:Class="UI.RegistrarClientes"
+﻿<mah:MetroWindow x:Class="UI.RegistrarClientes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         Title="RegistrarClientes" Height="500" Width="600" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ControlTemplate x:Key="errorTemplate">
@@ -58,7 +59,7 @@
                 UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[segundoApellido]}"
                     Name="txtSegundoApellido" Grid.Column="1" Grid.Row="3" Margin="0,5,30,5"></TextBox>
                 
-                <TextBox MaxLength="10" Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding Path=DUI, Mode=TwoWay, ValidatesOnDataErrors=True,
+                <TextBox TextChanged="txtDui_TextChanged" MaxLength="10" Validation.ErrorTemplate="{StaticResource errorTemplate}" Text="{Binding Path=DUI, Mode=TwoWay, ValidatesOnDataErrors=True,
                 UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[dui]}" Name="txtDui" Grid.Column="1" Grid.Row="4" Margin="0,5,30,5">
                     
                 </TextBox>
@@ -79,4 +80,4 @@
 
     </Grid>
     
-</Window>
+</mah:MetroWindow>

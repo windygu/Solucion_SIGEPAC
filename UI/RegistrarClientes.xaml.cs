@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 using EN;
 using BL;
 
@@ -19,7 +20,7 @@ namespace UI
     /// <summary>
     /// Lógica de interacción para RegistrarClientes.xaml
     /// </summary>
-    public partial class RegistrarClientes : Window
+    public partial class RegistrarClientes : MetroWindow
     {
         ENCliente c = new ENCliente();
         BLCliente c2 = new BLCliente();
@@ -137,6 +138,16 @@ namespace UI
             txtPrimerNombre.Focus();
         }
 
-        
+        private void txtDui_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int indice = txtDui.Text.Length;
+            if (indice==9)
+            {
+                string txt = txtDui.Text.Remove(8);
+                txtDui.Text = string.Concat(txt, "-");
+                txtDui.Select(txtDui.Text.Length, 0);
+            }
+            
+        }
     }
 }
