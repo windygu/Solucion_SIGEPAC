@@ -180,14 +180,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Google Drive\WPFColorPicker\WPFColorPicker\WPFColorPickerLib\WPFColorPickerLib.csproj">
-      <Project>{587acfba-1a74-4a38-98c4-69442eccb7dc}</Project>
-      <Name>WPFColorPickerLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Google Drive\WPFColorPicker\WPFColorPicker\WPFColorPicker\WPFColorPicker.csproj">
-      <Project>{5caead57-abf5-4620-b9e0-644b1fec822c}</Project>
-      <Name>WPFColorPicker</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BL\BL.csproj">
       <Project>{7CD94474-C3C2-4504-93B2-B5E18E326A99}</Project>
       <Name>BL</Name>

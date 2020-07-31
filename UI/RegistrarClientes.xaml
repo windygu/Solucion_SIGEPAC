@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        Title="RegistrarClientes" Height="500" Width="600" WindowStartupLocation="CenterScreen">
+        Title="Registro clientes" Height="500" Width="600" WindowStartupLocation="CenterScreen" ShowMinButton="False" ShowMaxRestoreButton="False">
     <Window.Resources>
         <ControlTemplate x:Key="errorTemplate">
             <Border BorderBrush="OrangeRed" BorderThickness="2">
@@ -23,7 +23,7 @@
     </Window.DataContext>
     <Grid>
         <StackPanel Margin="5">
-            <TextBlock TextAlignment="Center" FontSize="25" FontWeight="Bold" Margin="0,15">Registrar clientes</TextBlock>
+            <TextBlock Name="tbTitulo" TextAlignment="Center" FontSize="25" FontWeight="Bold" Margin="0,15">Registrar clientes</TextBlock>
             <Grid Margin="12">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="210"></ColumnDefinition>

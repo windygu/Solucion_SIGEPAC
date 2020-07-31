@@ -1,50 +1,25 @@
-﻿<mah:MetroWindow
+﻿<mah:MetroWindow x:Class="UI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:WPFColorPickerLib="clr-namespace:WPFColorPickerLib;assembly=WPFColorPickerLib" x:Class="UI.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1100" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Clientes" Height="700" IsMinButtonEnabled="True" ShowMinButton="True" Width="1100" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" mah:ValidationHelper.ShowValidationErrorOnMouseOver="True">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="120"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <TextBlock FontSize="20" Grid.Row="0" Margin="10, 0,10,0"><Run Text="Buscar por:"/></TextBlock>
-            <WrapPanel Grid.Row="1">
-                <RadioButton x:Name="rdbId" Grid.Column="1" IsChecked="True" Margin="20,10,30,10" Content="Id"/>
-                <RadioButton x:Name="rdbNombre" Grid.Column="0" Margin="20,10,30,10" Content="Nombre"/>
-                <RadioButton x:Name="rdbApellido" Grid.Column="2" Margin="20,10,30,10" Content="Apellido"/>
-                <RadioButton x:Name="rdbDUI" Grid.Column="1" Margin="20,10,30,10" Content="DUI"/>
-                <Button x:Name="btnColorFondo" Margin="20, 0, 0, 0" Click="btnColorFondo_Click" Width="150" Height="30" Content="Elegir color de fondo"/>
-            </WrapPanel>
-
-            <Button Grid.Row="2" Width="100" Height="30" Content="Buscar" FontSize="15" VerticalContentAlignment="Center" Margin="371,5,623,10" Click="Button_Click"/>
-            <TextBox TextChanged="txtBuscador_TextChanged" KeyDown="txtBuscador_KeyDown" Grid.Row="2" LostFocus="txtBuscador_LostFocus" x:Name="txtBuscador" Width="350" 
+        <Button Name="txtBuscar" Click="txtBuscar_Click" Grid.Row="0" Width="100" Height="30" Content="Buscar" FontSize="15" VerticalContentAlignment="Center" Margin="371,5,623,10" />
+        <TextBox  Grid.Row="0" TextChanged="txtBuscador_TextChanged" LostFocus="txtBuscador_LostFocus" x:Name="txtBuscador" Width="350" 
                      GotFocus="txtBuscador_GotFocus" Height="30" Margin="10,5,734,10"/>
-            <TextBlock x:Name="tbMarca" VerticalAlignment="Center" HorizontalAlignment="Left" 
+        <TextBlock  Grid.Row="0" x:Name="tbMarca" VerticalAlignment="Center" HorizontalAlignment="Left" 
                Text="Buscar por nombre o apellido" Foreground="DarkGray" Margin="16,11,0,18" 
-               MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"  Grid.Row="2"/>
-            <ComboBox Grid.Row="2" Width="230" Height="30" x:Name="cboMostrando" Margin="588,5,176,10">
-                <ComboBoxItem IsSelected="True" x:Name="cboiTodos" Content="Todos"/>
-                <ComboBoxItem x:Name="cboiConPedidos" Content="Clientes con pedidos"/>
-                <ComboBoxItem x:Name="cboiSinPedidos" Content="Clientes sin pedidos"/>
-            </ComboBox>
-        </Grid>
+               MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
 
         <DataGrid SelectionMode="Single" SelectedValuePath="Id" Grid.Row="1" Margin="10" x:Name="dtgListadoClientes" 
           CanUserReorderColumns="False" CanUserResizeColumns="True" CanUserSortColumns="False" 
@@ -61,11 +36,8 @@
                 <DataGridTextColumn Header="Correo" Width="*" Binding="{Binding Correo}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnAgregar" Click="btnAgregar_Click" Grid.Row="2" Width="85" Height="30" Margin="55,10,452,10" Content="Registrar"/>
-        <Button x:Name="btnActualizar" Click="btnActualizar_Click" Grid.Row="2" Width="85" Height="30" Margin="194,10,313,10" Content="Editar"/>
-        <Button x:Name="btnEliminar" Click="btnEliminar_Click" Grid.Row="2" Width="85" Height="30" Margin="452,10,55,10" Content="Eliminar"/>
-        <Button x:Name="btnActual" Click="btnActual_Click" Grid.Row="2" Width="85" Height="30" Margin="323,10,184,10" Content="Actualizar"/>
-        
-
+        <Button x:Name="btnAgregar" Click="btnAgregar_Click" Grid.Row="2" Width="85" Height="30" Margin="360,10,649,10" Content="Registrar"/>
+        <Button x:Name="btnActualizar" Click="btnActualizar_Click" Grid.Row="2" Width="85" Height="30" Margin="505,10,504,10" Content="Editar"/>
+        <Button x:Name="btnEliminar" Click="btnEliminar_Click" Grid.Row="2" Width="85" Height="30" Margin="649,10,360,10" Content="Eliminar"/>
     </Grid>
 </mah:MetroWindow>

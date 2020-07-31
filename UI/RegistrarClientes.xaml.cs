@@ -34,6 +34,8 @@ namespace UI
             if (id != null)
             {
                 btnNuevoCliente.Visibility = Visibility.Hidden;
+                Title = "Edición clientes";
+                tbTitulo.Text = "Editar clientes";
                 this.id = id;
                 cargarDatos();
             }
@@ -102,7 +104,6 @@ namespace UI
                     if (id == null)
                     {
                         msj = c2.registrar(c);
-                        mw.cargarDatos();
                         MessageBox.Show(msj, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
@@ -113,7 +114,7 @@ namespace UI
                         MessageBox.Show(msj + " ¿Desea cerrar el editor?", "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
                         if (r == MessageBoxResult.Yes) Close();
                     }
-                    
+                    mw.cargarDatos();
 
                 }
                 catch (Exception ex)
